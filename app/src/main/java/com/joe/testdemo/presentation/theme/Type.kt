@@ -1,4 +1,4 @@
-package com.joe.testdemo.ui.theme
+package com.joe.testdemo.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
