@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * This layer using for potential Encrypt/decrypt
+ */
 class LocalRoomFacade @Inject constructor(
     private val transactionDao: TransactionDao,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
