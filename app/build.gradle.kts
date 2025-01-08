@@ -64,11 +64,15 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
 
     //retrofit2
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+
+    //Glide
+    implementation(libs.compose)
 
     //navigation
     implementation(libs.androidx.navigation.compose)
@@ -77,13 +81,18 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     //test
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(libs.truth)
+
+    // Paging3
+    implementation(libs.paging.runtime)
+    implementation(libs.paging.compose)
+    implementation(libs.androidx.paging.testing)
 
     //Mockito
     testImplementation(libs.mockito.core)
@@ -92,6 +101,8 @@ dependencies {
 
     //Turbine
     testImplementation(libs.turbine)
+
+    debugImplementation(libs.com.squareup.leakcanary.leakcanary.android)
 }
 
 tasks.withType<Test> {
@@ -100,4 +111,8 @@ tasks.withType<Test> {
 
 kapt {
     correctErrorTypes = true
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

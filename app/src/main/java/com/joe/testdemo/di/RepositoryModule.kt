@@ -1,7 +1,7 @@
 package com.joe.testdemo.di
 
-import com.joe.testdemo.data.repository.DefaultTransactionRepository
-import com.joe.testdemo.domain.repository.TransactionRepository
+import com.joe.testdemo.data.repository.DefaultUserRepository
+import com.joe.testdemo.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -9,9 +9,8 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+abstract class UserRepositoryModule {
 
     @Binds
-    abstract fun bindTransactionRepository(implementation: DefaultTransactionRepository): TransactionRepository
-
+    abstract fun bindUserRepository(implementation: DefaultUserRepository): UserRepository
 }

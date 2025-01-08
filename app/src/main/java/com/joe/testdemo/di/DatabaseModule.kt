@@ -1,9 +1,9 @@
 package com.joe.testdemo.di
 
 import android.content.Context
-import androidx.room.Room
-import com.joe.testdemo.data.database.AppDatabase
-import com.joe.testdemo.data.database.dao.TransactionDao
+import com.joe.testdemo.data.gateway.local.db.RemoteKeysDao
+import com.joe.testdemo.data.gateway.local.db.UserDao
+import com.joe.testdemo.data.gateway.local.db.UserDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,19 +13,25 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object DatabaseModule {
-    @Provides
-    @Singleton
-    fun providesNiaDatabase(
-        @ApplicationContext context: Context,
-    ): AppDatabase = Room.databaseBuilder(
-        context,
-        AppDatabase::class.java,
-        "app_database",
-    ).build()
+object DatabaseModule {
 
     @Provides
-    fun provideTransactionDao(database: AppDatabase): TransactionDao {
-        return database.transactionDao()
+    @Singleton
+    fun provideUserDatabase(@ApplicationContext context: Context): UserDatabase {
+        return UserDatabase.init(
+            context = context,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providerUserDao(database: UserDatabase): UserDao {
+        return database.userDao()
+    }
+
+    @Provides
+    @Singleton
+    fun providerRemoteKeysDao(database: UserDatabase): RemoteKeysDao {
+        return database.remoteKeysDao()
     }
 }

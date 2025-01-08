@@ -1,24 +1,22 @@
 package com.joe.testdemo.di
 
-import com.joe.testdemo.data.facade.LocalRoomFacade
-import com.joe.testdemo.data.facade.RemoteApiFacade
-import com.joe.testdemo.data.gateway.LocalRoomGateway
-import com.joe.testdemo.data.gateway.RemoteApiGateway
+import com.joe.testdemo.data.gateway.local.UserDatabaseGateway
+import com.joe.testdemo.data.gateway.local.UserDatabaseGatewayImpl
+import com.joe.testdemo.data.gateway.remote.UserRemoteGateway
+import com.joe.testdemo.data.gateway.remote.UserRemoteGatewayImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class GatewayModule {
+abstract class UserGatewayModule {
 
     @Binds
-    @Singleton
-    abstract fun bindRemoteApiGateway(implementation: RemoteApiFacade): RemoteApiGateway
+    abstract fun bindUserRemoteGateway(implementation: UserRemoteGatewayImpl): UserRemoteGateway
 
     @Binds
-    @Singleton
-    abstract fun bindLocalRoomGateway(implementation: LocalRoomFacade): LocalRoomGateway
+    abstract fun bindUserDatabaseGateway(implementation: UserDatabaseGatewayImpl): UserDatabaseGateway
+
 }
